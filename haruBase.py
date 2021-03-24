@@ -52,16 +52,19 @@ def timeLoop():
         print("Time set to " + currentTime)
 
     def quotesExecute():
-        lastQuote = ""
-        currentQuote = random.choice(quotesList)
-        if currentQuote == lastQuote:
-            #reroll quote
+        if bedtime == false:
+            lastQuote = ""
             currentQuote = random.choice(quotesList)
+            if currentQuote == lastQuote:
+                #reroll quote
+                currentQuote = random.choice(quotesList)
+            else:
+                #execute posting quote
+                print(currentQuote)
+                api.update_status(currentQuote)
+                lastQuote = currentQuote
         else:
-            #execute posting quote
-            print(currentQuote)
-            api.update_status(currentQuote)
-            lastQuote = currentQuote
+            print("Haru is sleeping...")
     schedule.every(60).minutes.do(quotesExecute)
     schedule.every(30).seconds.do(clock)
     def morningExecute():
