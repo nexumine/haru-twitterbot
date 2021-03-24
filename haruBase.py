@@ -74,7 +74,6 @@ def timeLoop():
             api.update_status(random.choice(morningList))
             bedtime = False
             print("Bedtime is set to " + str(bedtime))
-            schedule.every(60).minutes.do(quotesExecute)
             time.sleep(60)
         else:
             print("Error: Bedtime is already set to false.")
@@ -88,7 +87,6 @@ def timeLoop():
             api.update_status(random.choice(nightList))
             bedtime = True
             print("Bedtime is set to " + str(bedtime))
-            schedule.cancel_job(quotesExecute)
             time.sleep(60)
         else:
             print("Error: Bedtime is already set to true.")
@@ -97,8 +95,8 @@ def timeLoop():
 
     while True:
         global currentTimeSansSeconds
-        if currentTimeSansSeconds == "07:00": morningExecute() #set to 7
-        elif currentTimeSansSeconds == "23:20": nightExecute()
+        if currentTimeSansSeconds == "09:00": morningExecute() #set to 7
+        elif currentTimeSansSeconds == "00:00": nightExecute()
     # Checks whether a scheduled task
     # is pending to run or not
         schedule.run_pending()
