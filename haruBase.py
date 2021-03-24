@@ -4,6 +4,8 @@ import time
 from datetime import datetime
 import random
 from quotes import quotesList, morningList, nightList
+import os
+from os import environ
 import pytz
 from pytz import timezone
 
