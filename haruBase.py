@@ -52,7 +52,7 @@ def timeLoop():
         print("Time set to " + currentTime)
 
     def quotesExecute():
-        if bedtime == false:
+        if bedtime == False:
             lastQuote = ""
             currentQuote = random.choice(quotesList)
             if currentQuote == lastQuote:
