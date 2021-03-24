@@ -91,7 +91,6 @@ def timeLoop():
             print("Error: Bedtime is already set to true.")
             print(str(bedtime))
             time.sleep(60)
-#hon
 
     while True:
         global currentTimeSansSeconds
