@@ -98,7 +98,7 @@ def timeLoop():
     while True:
         global currentTimeSansSeconds
         if currentTimeSansSeconds == "07:00": morningExecute() #set to 7
-        elif currentTimeSansSeconds == "22:00": nightExecute()
+        elif currentTimeSansSeconds == "23:20": nightExecute()
     # Checks whether a scheduled task
     # is pending to run or not
         schedule.run_pending()
