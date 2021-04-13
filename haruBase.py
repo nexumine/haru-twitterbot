@@ -65,7 +65,7 @@ def timeLoop():
                 lastQuote = currentQuote
         else:
             print("Haru is sleeping...")
-    schedule.every(60).minutes.do(quotesExecute)
+    schedule.every(3).hours.do(quotesExecute)
     schedule.every(30).seconds.do(clock)
     def morningExecute():
         global bedtime
