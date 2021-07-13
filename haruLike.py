@@ -20,29 +20,29 @@ auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 
-def mainLoop():
-    def likeCheck():
-            search = ['Haru Okumura', "persona 5 haru", "makoto nijima", "persona 5 makoto"]
-            nrTweets = 100
+
+def likeCheck():
+        search = ['Haru Okumura', "persona 5 haru", "makoto nijima", "persona 5 makoto"]
+        nrTweets = 100
             
-            for tweet in tweepy.Cursor(api.search, random.choice(search)).items(nrTweets):
-                try:
-                    print('Recent tweet was liked!')
-                    tweet.favorite()
-                except tweepy.TweepError as e:
-                    print(e.reason)
-                except StopIteration:
-                    break
-    def selfLike():
-            nrTweets = 100
-            for tweet in tweepy.Cursor(api.friends).items(nrTweets):
-                try:
-                    print('Friend tweet was liked!')
-                    tweet.favorite()
-                except tweepy.TweepError as e:
-                    print(e.reason)
-                except StopIteration:
-                    break
-    schedule.every(70).seconds.do(likeCheck)
-    schedule.every(5).minutes.do(selfLike)
+        for tweet in tweepy.Cursor(api.search, random.choice(search)).items(nrTweets):
+            try:
+                print('Recent tweet was liked!')
+                tweet.favorite()
+            except tweepy.TweepError as e:
+                print(e.reason)
+            except StopIteration:
+                break
+            break
+def selfLike():
+        nrTweets = 100
+        for tweet in tweepy.Cursor(api.friends).items(nrTweets):
+            try:
+                print('Friend tweet was liked!')
+                tweet.favorite()
+            except tweepy.TweepError as e:
+                print(e.reason)
+            except StopIteration:
+                break
+            break
 print("Passed 'haruLike.py'")
