@@ -69,8 +69,8 @@ def timeLoop():
     
     schedule.every(2).hours.do(quotesExecute)
     schedule.every(30).seconds.do(clock)
-    schedule.every(70).seconds.do(haruLike.selfLike)
-    schedule.every(5).minutes.do(haruLike.likeCheck)
+    schedule.every(80).seconds.do(haruLike.likeCheck)
+    schedule.every(5).minutes.do(haruLike.selfLike)
     def morningExecute():
         global bedtime
         if bedtime == True:
