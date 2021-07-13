@@ -27,8 +27,8 @@ def likeCheck():
             
         for tweet in tweepy.Cursor(api.search, random.choice(search)).items(nrTweets):
             try:
-                print('Recent tweet was liked!')
                 tweet.favorite()
+                print('Recent tweet was liked!')
             except tweepy.TweepError as e:
                 print(e.reason)
             except StopIteration:
@@ -36,10 +36,10 @@ def likeCheck():
             break
 def selfLike():
         nrTweets = 100
-        for tweet in tweepy.Cursor(api.friends).items(nrTweets):
+        for tweet in tweepy.Cursor(api.user_timeline).items(nrTweets):
             try:
-                print('Friend tweet was liked!')
                 tweet.favorite()
+                print('Timeline tweet was liked!')
             except tweepy.TweepError as e:
                 print(e.reason)
             except StopIteration:
