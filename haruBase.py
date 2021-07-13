@@ -103,7 +103,7 @@ def timeLoop():
     # is pending to run or not
         schedule.run_pending()
         time.sleep(1)
-haruLike.likeCheck()
+haruLike.mainLoop()
 timeLoop()
 
 

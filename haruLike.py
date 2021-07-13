@@ -19,26 +19,30 @@ auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
-def likeCheck():
-        search = 'Haru Okumura'
-        nrTweets = 50
 
-        for tweet in tweepy.Cursor(api.search, search).items(nrTweets):
-            try:
-                print('Recent tweet was liked!')
-                tweet.favorite()
-                time.sleep(70)
-            except tweepy.TweepError as e:
-                print(e.reason)
-            except StopIteration:
-                break
-
-        for tweet in tweepy.Cursor(api.friends).items(nrTweets):
-            try:
-                print('Friend tweet was liked!')
-                tweet.favorite()
-                time.sleep(420)
-            except tweepy.TweepError as e:
-                print(e.reason)
-            except StopIteration:
-                break
+def mainLoop():
+    def likeCheck():
+            search = 'Haru Okumura'
+            nrTweets = 100
+            
+            for tweet in tweepy.Cursor(api.search, search).items(nrTweets):
+                try:
+                    print('Recent tweet was liked!')
+                    tweet.favorite()
+                except tweepy.TweepError as e:
+                    print(e.reason)
+                except StopIteration:
+                    break
+    def selfLike():
+            nrTweets = 50
+            for tweet in tweepy.Cursor(api.friends).items(nrTweets):
+                try:
+                    print('Friend tweet was liked!')
+                    tweet.favorite()
+                except tweepy.TweepError as e:
+                    print(e.reason)
+                except StopIteration:
+                    break
+    schedule.every(70).seconds.do(likeCheck)
+    schedule.every(5).minutes.do(selfLike)
+print("Passed 'haruLike.py'")
