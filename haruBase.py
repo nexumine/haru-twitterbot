@@ -9,6 +9,7 @@ from os import environ
 import pytz
 from pytz import timezone
 
+import haruLike
 print("Running!")
 CONSUMER_KEY = environ['CONSUMER_KEY']
 CONSUMER_SECRET = environ['CONSUMER_SECRET']
@@ -17,7 +18,7 @@ ACCESS_SECRET = environ['ACCESS_SECRET']
 
 auth = tweepy.OAuthHandler(CONSUMER_KEY, CONSUMER_SECRET)
 auth.set_access_token(ACCESS_KEY, ACCESS_SECRET)
-api = tweepy.API(auth)
+api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 # define date format
 global fmtS
@@ -65,7 +66,8 @@ def timeLoop():
                 lastQuote = currentQuote
         else:
             print("Haru is sleeping...")
-    schedule.every(3).hours.do(quotesExecute)
+    
+    schedule.every(2).hours.do(quotesExecute)
     schedule.every(30).seconds.do(clock)
     def morningExecute():
         global bedtime
@@ -101,7 +103,7 @@ def timeLoop():
     # is pending to run or not
         schedule.run_pending()
         time.sleep(1)
-
+haruLike.likeCheck()
 timeLoop()
 
 
