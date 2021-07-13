@@ -22,10 +22,10 @@ api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 def mainLoop():
     def likeCheck():
-            search = 'Haru Okumura'
+            search = ['Haru Okumura', "persona 5 haru", "makoto nijima", "persona 5 makoto"]
             nrTweets = 100
             
-            for tweet in tweepy.Cursor(api.search, search).items(nrTweets):
+            for tweet in tweepy.Cursor(api.search, random.choice(search)).items(nrTweets):
                 try:
                     print('Recent tweet was liked!')
                     tweet.favorite()
@@ -34,7 +34,7 @@ def mainLoop():
                 except StopIteration:
                     break
     def selfLike():
-            nrTweets = 50
+            nrTweets = 100
             for tweet in tweepy.Cursor(api.friends).items(nrTweets):
                 try:
                     print('Friend tweet was liked!')
