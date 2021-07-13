@@ -31,7 +31,7 @@ def likeCheck():
                 print('Recent tweet was liked!')
             except tweepy.TweepError as e:
                 print(e.reason)
-                print(tweet)
+                print(tweet.text)
             except StopIteration:
                 break
             break
@@ -43,7 +43,7 @@ def selfLike():
                 print('Timeline tweet was liked!')
             except tweepy.TweepError as e:
                 print(e.reason)
-                print(tweet)
+                print(tweet.text)
             except StopIteration:
                 break
             break
